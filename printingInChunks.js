@@ -11,7 +11,7 @@ function getAndPrintHTMLChunks() {
     };
 
     // I am GETing the 'data'
-    https.get(getAndPrintHTMLChunks, function (response) {
+    https.get(requestOptions, function (response) {
         // set encoding of received data to UTF-8
         response.setEncoding('utf8');
 
@@ -19,6 +19,11 @@ function getAndPrintHTMLChunks() {
         response.on('data', function (data) {
             console.log('Data chunk:', data + '\n');
         });
+        response.on('end', function () {
+            console.log('Response stream complete.');
+        });
 
     });
 }
+
+console.log(getAndPrintHTMLChunks());
